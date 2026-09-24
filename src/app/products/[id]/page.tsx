@@ -1,12 +1,15 @@
 'use client';
 
-import { useState, useEffect } from 'react';
+import { useState, useEffect, use } from 'react';
 import { getProduct } from '../../../api/products';
 import { Product } from '../../../types/product';
 import { ArrowLeft, AlertCircle, Edit, ShoppingCart, Tag, MapPin, Package, Star, Calendar } from 'lucide-react';
 import Link from 'next/link';
 
-export default function ProductDetailsPage({ params }: { params: { id: string } }) {
+export default function ProductDetailsPage({ params }: { params: Promise<{ id: string }> }) {
+  const unwrappedParams = use(params);
+  const productId = unwrappedParams.id;
+
   const [product, setProduct] = useState<Product | null>(null);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
@@ -14,7 +17,7 @@ export default function ProductDetailsPage({ params }: { params: { id: string } 
   useEffect(() => {
     const fetchProduct = async () => {
       try {
-        const data = await getProduct(params.id);
+        const data = await getProduct(productId);
         setProduct(data);
       } catch (err) {
         setError('Failed to load product. It may not exist.');
@@ -23,7 +26,7 @@ export default function ProductDetailsPage({ params }: { params: { id: string } 
       }
     };
     fetchProduct();
-  }, [params.id]);
+  }, [productId]);
 
   if (loading) {
     return (

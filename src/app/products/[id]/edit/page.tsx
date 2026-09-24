@@ -1,6 +1,6 @@
 'use client';
 
-import { useState, useEffect } from 'react';
+import { useState, useEffect, use } from 'react';
 import { useRouter } from 'next/navigation';
 import { ProductForm } from '../../../../components/forms/ProductForm';
 import { getProduct, updateProduct } from '../../../../api/products';
@@ -8,7 +8,10 @@ import { Product } from '../../../../types/product';
 import { ArrowLeft, AlertCircle } from 'lucide-react';
 import Link from 'next/link';
 
-export default function EditProductPage({ params }: { params: { id: string } }) {
+export default function EditProductPage({ params }: { params: Promise<{ id: string }> }) {
+  const unwrappedParams = use(params);
+  const productId = unwrappedParams.id;
+
   const router = useRouter();
   const [product, setProduct] = useState<Product | null>(null);
   const [loading, setLoading] = useState(true);
@@ -18,7 +21,7 @@ export default function EditProductPage({ params }: { params: { id: string } }) 
   useEffect(() => {
     const fetchProduct = async () => {
       try {
-        const data = await getProduct(params.id);
+        const data = await getProduct(productId);
         setProduct(data);
       } catch (err) {
         setError('Failed to load product. It may not exist.');
@@ -27,13 +30,13 @@ export default function EditProductPage({ params }: { params: { id: string } }) 
       }
     };
     fetchProduct();
-  }, [params.id]);
+  }, [productId]);
 
   const handleSubmit = async (data: Partial<Product>) => {
     setIsSubmitting(true);
     try {
-      await updateProduct(params.id, data);
-      router.push(`/products/${params.id}`);
+      await updateProduct(productId, data);
+      router.push(`/products/${productId}`);
     } catch (err) {
       console.error(err);
       throw err; // Let the form handle the error display
@@ -72,7 +75,7 @@ export default function EditProductPage({ params }: { params: { id: string } }) 
   return (
     <div className="max-w-7xl mx-auto space-y-6">
       <div>
-        <Link href={`/products/${params.id}`} className="inline-flex items-center text-sm font-medium text-slate-500 hover:text-indigo-600 transition-colors mb-4">
+        <Link href={`/products/${productId}`} className="inline-flex items-center text-sm font-medium text-slate-500 hover:text-indigo-600 transition-colors mb-4">
           <ArrowLeft className="h-4 w-4 mr-1" />
           Back to Details
         </Link>
