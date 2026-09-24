@@ -61,7 +61,7 @@ export const Filters = ({
             <select
               value={selectedCategory}
               onChange={(e) => onCategoryChange(e.target.value)}
-              className="block w-full pl-3 pr-10 py-2 text-base border-slate-300 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm rounded-lg"
+              className="block w-full pl-3 pr-10 py-2 text-base border border-slate-300 bg-white text-slate-700 focus:outline-none focus:ring-1 focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm rounded-lg"
             >
               <option value="">All Categories</option>
               {categories.map((category) => (
@@ -77,7 +77,7 @@ export const Filters = ({
             <select
               value={sortBy}
               onChange={(e) => onSortChange(e.target.value)}
-              className="block w-full pl-3 pr-10 py-2 text-base border-slate-300 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm rounded-lg"
+              className="block w-full pl-3 pr-10 py-2 text-base border border-slate-300 bg-white text-slate-700 focus:outline-none focus:ring-1 focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm rounded-lg"
             >
               <option value="">Sort By...</option>
               <option value="price">Price</option>
