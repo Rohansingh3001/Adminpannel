@@ -145,7 +145,7 @@ export const ProductForm = ({ initialData = {}, onSubmit, isSubmitting, title }:
             <div className="grid grid-cols-1 md:grid-cols-2 gap-5">
               <div>
                 <label htmlFor="price" className="block text-sm font-medium text-slate-700">
-                  Price ($) <span className="text-red-500">*</span>
+                  Price (₹) <span className="text-red-500">*</span>
                 </label>
                 <div className="mt-1">
                   <input

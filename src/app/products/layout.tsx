@@ -32,7 +32,7 @@ export default function DashboardLayout({ children }: { children: React.ReactNod
       {/* Sidebar */}
       <div className={`
         ${sidebarOpen ? 'block' : 'hidden'} 
-        md:block w-full md:w-64 bg-white border-r border-slate-200 md:h-screen md:sticky md:top-0
+        md:block w-full md:w-64 bg-white/70 backdrop-blur-xl border-r border-slate-200 md:h-screen md:sticky md:top-0
         flex-shrink-0 z-20 transition-all duration-300
       `}>
         <div className="hidden md:flex items-center space-x-2 font-bold text-xl text-indigo-600 p-6 border-b border-slate-100">

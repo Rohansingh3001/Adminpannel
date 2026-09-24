@@ -35,7 +35,7 @@ export const ProductList = ({ products, onDelete }: ProductListProps) => {
   }
 
   return (
-    <div className="bg-white border-t border-slate-200 overflow-hidden">
+    <div className="bg-transparent overflow-hidden">
       {/* Delete Confirmation Modal */}
       {deleteConfirmId !== null && (
         <div className="fixed inset-0 z-50 overflow-y-auto" aria-labelledby="modal-title" role="dialog" aria-modal="true">
@@ -84,9 +84,9 @@ export const ProductList = ({ products, onDelete }: ProductListProps) => {
       )}
 
       {/* Desktop Table View */}
-      <div className="hidden md:block overflow-x-auto">
+      <div className="hidden md:block overflow-x-auto rounded-2xl border border-slate-200 shadow-sm bg-white/80 backdrop-blur-md mx-6 mb-6 mt-4">
         <table className="min-w-full divide-y divide-slate-200">
-          <thead className="bg-slate-50">
+          <thead className="bg-slate-50/80">
             <tr>
               <th scope="col" className="px-6 py-3 text-left text-xs font-medium text-slate-500 uppercase tracking-wider">Product</th>
               <th scope="col" className="px-6 py-3 text-left text-xs font-medium text-slate-500 uppercase tracking-wider">Category</th>
@@ -116,7 +116,7 @@ export const ProductList = ({ products, onDelete }: ProductListProps) => {
                   </span>
                 </td>
                 <td className="px-6 py-4 whitespace-nowrap text-sm text-slate-900 text-right font-medium">
-                  ${product.price.toFixed(2)}
+                  ₹{product.price.toFixed(2)}
                 </td>
                 <td className="px-6 py-4 whitespace-nowrap text-sm text-slate-500 text-right">
                   <div className="flex items-center justify-end">
@@ -163,7 +163,7 @@ export const ProductList = ({ products, onDelete }: ProductListProps) => {
               <p className="text-sm text-slate-500 mb-4">{product.brand}</p>
               
               <div className="flex justify-between items-center mb-4">
-                <span className="text-xl font-bold text-slate-900">${product.price.toFixed(2)}</span>
+                <span className="text-xl font-bold text-slate-900">₹{product.price.toFixed(2)}</span>
                 <div className="flex items-center text-sm text-slate-600 font-medium">
                   <span className="text-amber-400 mr-1 text-lg">★</span>
                   {product.rating}

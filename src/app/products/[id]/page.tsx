@@ -101,7 +101,7 @@ export default function ProductDetailsPage({ params }: { params: { id: string } 
             </div>
             
             <div className="mb-8">
-              <span className="text-4xl font-black text-slate-900">${product.price.toFixed(2)}</span>
+              <span className="text-4xl font-black text-slate-900">₹{product.price.toFixed(2)}</span>
               {product.discountPercentage > 0 && (
                 <span className="ml-3 text-lg text-red-500 font-bold bg-red-50 px-2 py-1 rounded-lg">-{product.discountPercentage}%</span>
               )}
