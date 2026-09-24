@@ -38,7 +38,11 @@ export const ProductForm = ({ initialData = {}, onSubmit, isSubmitting, title }:
     
     // Clear validation error when field is edited
     if (errors[name]) {
-      setErrors(prev => ({ ...prev, [name]: undefined }));
+      setErrors(prev => {
+        const newErrors = { ...prev };
+        delete newErrors[name];
+        return newErrors;
+      });
     }
   };
 
